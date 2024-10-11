@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "az.edu.turing.bankingservice")
 public class BankingServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(BankingServiceApplication.class, args);
