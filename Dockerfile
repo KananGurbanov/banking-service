@@ -8,6 +8,9 @@ WORKDIR /app
 COPY build.gradle settings.gradle gradlew /app/
 COPY gradle /app/gradle
 
+# Give execute permissions to the Gradle wrapper
+RUN chmod +x gradlew
+
 # Copy the application source code
 COPY src /app/src
 
