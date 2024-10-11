@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: db, server, mail
+
+#active profile localdir

@@ -1,0 +1,106 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Kanan Gurbanov
+      changes:
+        - createTable:
+            tableName: USERS
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  name: SURNAME
+                  type: VARCHAR(255)
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: PASSWORD
+                  type: VARCHAR(255)
+              - column:
+                  name: VERSION
+                  type: BIGINT
+  - changeSet:
+      id: 2
+      author: Kanan Gurbanov
+      changes:
+        - createTable:
+            tableName: ACCOUNTS
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: IBAN
+                  type: VARCHAR(255)
+              - column:
+                  name: BANK
+                  type: VARCHAR(255)
+              - column:
+                  name: BALANCE
+                  type: DOUBLE PRECISION
+              - column:
+                  name: STATUS
+                  type: VARCHAR(255)
+              - column:
+                  name: USER_ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            constraintName: foreign_key_account_user
+            baseTableName: ACCOUNTS
+            baseColumnNames: USER_ID
+            referencedTableName: USERS
+            referencedColumnNames: ID
+            onDelete: CASCADE
+
+
+  - changeSet:
+      id: 3
+      author: Kanan Gurbanov
+      changes:
+        - createTable:
+            tableName: BANK_TRANSFERS
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name:
+                  type: VARCHAR(255)
+              - column:
+                  name: TO
+                  type: VARCHAR(255)
+              - column:
+                  name: AMOUNT
+                  type: DOUBLE PRECISION
+              - column:
+                  name: USER_ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            constraintName: foreign_key_bank_transfers_user
+            baseTableName: BANK_TRANSFERS
+            baseColumnNames: USER_ID
+            referencedTableName: USERS
+            referencedColumnNames: ID
+            onDelete: CASCADE
